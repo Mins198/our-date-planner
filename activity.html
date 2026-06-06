@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Fun Adventures! 🎬✨</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #fff0f5; text-align: center; margin: 0; padding: 40px 20px; position: relative; overflow-x: hidden; min-height: 100vh; }
+        .bg-heart { position: fixed; color: rgba(255, 105, 180, 0.25); z-index: -1; bottom: -150px; user-select: none; pointer-events: none; animation: floatUp 10s linear infinite, sway 4s ease-in-out infinite alternate; }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
+        @keyframes sway { 0% { margin-left: 0px; } 100% { margin-left: 50px; } }
+        .main-wrapper { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; animation: fadeInPage 1.2s ease-out; }
+        .card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px); padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(255, 182, 193, 0.25); border: 1px solid rgba(255, 192, 203, 0.4); }
+        h1 { color: #ff69b4; margin-top: 0; }
+        .activity-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 25px 0; }
+        .activity-option-label { background: linear-gradient(145deg, #fffafb, #fff0f5); padding: 22px 12px; border-radius: 16px; border: 2px solid rgba(255, 182, 193, 0.4); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .activity-option-label input[type="radio"] { display: none; }
+        .activity-icon { font-size: 34px; }
+        .activity-title { font-size: 15px; color: #555; font-weight: bold; }
+        .activity-option-label:has(input[type="radio"]:checked) { background: linear-gradient(135deg, #ffb6c1, #ff69b4); color: white; border-color: #ff1493; transform: scale(1.05); }
+        .activity-option-label:has(input[type="radio"]:checked) .activity-title { color: #fff; }
+        button { padding: 16px; margin-top: 10px; border-radius: 12px; border: none; width: 100%; font-size: 16px; background: linear-gradient(135deg, #ff69b4, #ff1493); color: white; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="bg-heart" style="left: 5%; font-size: 110px;">🎬</div>
+<div class="bg-heart" style="left: 42%; font-size: 130px;">📸</div>
+
+<div class="main-wrapper">
+    <div class="card">
+        <h1>What Are We Doing Later, Princess? 🎬🧸</h1>
+
+        <script type="text/javascript">var submitted = false;</script>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='summary.html';}"></iframe>
+
+        <form id="adventureForm" action="https://docs.google.com/forms/d/1DdGGLYhk7_82EqcOzRpKejBn3O-Alyr-Nat7xLwvOPU/formResponse" method="POST" target="hidden_iframe" onsubmit="prepareForm()">
+
+            <input type="hidden" name="entry.278546341" id="finalDate">
+            <input type="hidden" name="entry.214828300" id="finalFood">
+            <input type="hidden" name="entry.616149668" id="finalActivities">
+
+            <div class="activity-options">
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Movie Date" required><span class="activity-icon">🍿</span><span class="activity-title">Movie</span></label>
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Arcade"><span class="activity-icon">🎮</span><span class="activity-title">Arcade</span></label>
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Photo Booth"><span class="activity-icon">📸</span><span class="activity-title">Photo Booth</span></label>
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Zoo/Aquarium"><span class="activity-icon">🦁</span><span class="activity-title">Zoo/Aquarium</span></label>
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Walk"><span class="activity-icon">🌅</span><span class="activity-title">Cozy Walk</span></label>
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Shopping"><span class="activity-icon">🛍️</span><span class="activity-title">Window Shopping</span></label>
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Thrift"><span class="activity-icon">👕</span><span class="activity-title">Thrift</span></label>
+                <label class="activity-option-label"><input type="radio" name="activity_choice" class="act-radio" value="Surprise"><span class="activity-icon">🎁</span><span class="activity-title">Surprise</span></label>
+            </div>
+
+            <button type="submit">Finish: Lock in Date! 💖✨</button>
+        </form>
+
+        <script>
+            function prepareForm() {
+                // Collect the selected radio button
+                const selected = document.querySelector('.act-radio:checked');
+                if (selected) {
+                    document.getElementById('finalActivities').value = selected.value;
+                }
+
+                // Collect Date and Food from URL
+                const params = new URLSearchParams(window.location.search);
+                document.getElementById('finalDate').value = params.get('chosen_date');
+                document.getElementById('finalFood').value = params.get('food_choice');
+
+                submitted = true;
+            }
+        </script>
+    </div>
+</div>
+
+</body>
+</html>
